@@ -27,7 +27,12 @@
     <!--
         var disqus_developer = 1;
         var map = Object();
+        var registry = Object();
 
+        registry.display = function() {
+            $("#registry").dialog({modal : true, title : "Wedding Registry",
+                    close : function() { $("#registry").dialog("destroy"); }});
+        };
         map.hide_map = function() {
             $("#map_iframe_box").hide();
             $("#map_loading").show();
@@ -40,21 +45,21 @@
             $("#mapiframe").attr("src",
                     "http://maps.google.com/maps?ie=UTF8&q=madrona+manor&fb=1&gl=us&hq=madrona+manor&hnear=Healdsburg,+CA&cid=0,0,3577658701885037947&ei=Dc5RS_CZCpLYsQPT5bSJCA&ved=0CAoQnwIwAA&ll=38.604728,-122.88655&spn=0.005869,0.00912&z=16&iwloc=A&output=embed");
 
-            $("#map").dialog({bgiframe : true, modal : true, height : 440,
+            $("#map").dialog({bgiframe : true, modal : true, height : 540,
                     resizable : false,
                     title : "Finding Madrona Manor",
                     close : function() { 
                         self.map.hide_map();
                         $("#map").dialog("destroy");
                     },
-                    width: 475});
+                    width: 575});
 
             $("#mapiframe").load(function() {
                     self.map.show_map();
                     // Need to reset the height and width so Google will
                     // properly center this
-                    $("#mapiframe").attr("width", 425);
-                    $("#mapiframe").attr("height", 350);
+                    $("#mapiframe").attr("width", 525);
+                    $("#mapiframe").attr("height", 450);
             });
         };
 
@@ -158,7 +163,8 @@
             href="http://maps.google.com/maps?ie=UTF8&q=madrona+manor&fb=1&gl=us&hq=madrona+manor&hnear=Healdsburg,+CA&cid=0,0,3577658701885037947&ei=Dc5RS_CZCpLYsQPT5bSJCA&ved=0CAoQnwIwAA&z=16&iwloc=A"
             onclick="map.display(); return false;">where?</a> | 
         <a href="#">getting here</a> | 
-        <a href="http://www.healdsburg.com/things_to_do/" target="_blank">while you're here</a> 
+        <a href="http://www.healdsburg.com/things_to_do/" target="_blank">while you're here</a> | 
+        <a href="#" onclick="registry.display(); return false;">registry</a>
         <br/>
         <br/>
         <div class="centered_box" id="intro">
@@ -180,11 +186,16 @@
                 <img src="images/loading.gif" align="center"/>
             </div>
             <div id="map_iframe_box" style="display: none;">
-                <iframe id="mapiframe" width="425" height="350" frameborder="0"
+                <iframe id="mapiframe" width="525" height="450" frameborder="0"
                     scrolling="no" marginheight="0" marginwidth="0"
                     src=""></iframe><br /><small><a
                         href="http://maps.google.com/maps?ie=UTF8&amp;q=madrona+manor&amp;fb=1&amp;gl=us&amp;hq=madrona+manor&amp;hnear=Healdsburg,+CA&amp;cid=0,0,3577658701885037947&amp;ei=Dc5RS_CZCpLYsQPT5bSJCA&amp;ved=0CAoQnwIwAA&amp;ll=38.606743,-122.887681&amp;spn=0.005869,0.013754&amp;z=16&amp;iwloc=A&amp;source=embed">View Larger Map</a></small>
             </div>
+        </center>
+    </div>
+    <div id="registry" style="display: none;">
+        <center>
+            We're not registered <em>yet</em>
         </center>
     </div>
     <script type="text/javascript">
